@@ -1,0 +1,24 @@
+{
+    "name": "olivia-s-blog",
+    "version": "1.0.0",
+    "description": "A project from Youtube Modern Web.",
+    "main": "server.js",
+    "scripts": {
+        "start": "nodemon server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/YAOMVP/Olivia-s-Blog.git"
+    },
+    "author": "Olivia",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/YAOMVP/Olivia-s-Blog/issues"
+    },
+    "homepage": "https://github.com/YAOMVP/Olivia-s-Blog#readme",
+    "dependencies": {
+        "express-fileupload": "^1.4.0",
+        "express.js": "^1.0.0",
+        "nodemon": "^2.0.21"
+    }
+}
