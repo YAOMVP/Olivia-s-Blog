@@ -4,7 +4,7 @@
 
 Build a fullstack blog app using mongoDB, Express, HTML/CSS/Javascript, and Nodejs. 
 
-![1678002493515](../Blog/README.assets/1678002493515.png)
+![1678774984153](README.assets/1678774984153.png)
 
 On the Home page we could click all the articles that I posts from database. When click the title, the whole information could show up. I could edit the posts when the author themselves click the edit button.
 
@@ -111,7 +111,6 @@ We can serve more clients without the need to throw in more hardware.
 
 ## Login and Register Page
 
-![1678067232684](../Blog/README.assets/1678067232684.png)
+![1678775015056](README.assets/1678775015056.png)
 
-![1678067306876](../Blog/README.assets/1678067306876.png)
-
+![1678775032199](README.assets/1678775032199.png)

@@ -17,6 +17,7 @@
     },
     "homepage": "https://github.com/YAOMVP/Olivia-s-Blog#readme",
     "dependencies": {
+        "dotenv": "^16.0.3",
         "express-fileupload": "^1.4.0",
         "express.js": "^1.0.0",
         "firebase": "^9.17.2",

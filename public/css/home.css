@@ -10,6 +10,17 @@ body {
     font-family: "poppins", sans-serif;
 }
 
+.logo {
+    width: 60px;
+    height: 60px;
+    transition: all .6s;
+    cursor: pointer;
+}
+
+.logo:hover {
+    transform: scale(3.4);
+}
+
 ::selection {
     background: #1b1b1b;
     color: #fff;
@@ -43,7 +54,6 @@ body {
 }
 
 .header {
-    margin-top: 60px;
     width: 100%;
     height: calc(100vh - 60px);
     background: url(../img/home-bg.jpg);
@@ -60,22 +70,26 @@ body {
 .heading {
     color: #393939;
     font-size: 80PX;
-    line-height: 60PX;
-    margin-bottom: 80px;
+    /* line-height: 30PX; */
+    margin-top: 160px;
 }
 
 .heading .small {
     display: block;
-    font-size: 40px;
+    font-size: 120px;
 }
 
 .heading .no-fill {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 230px;
     font-style: italic;
     color: transparent;
     -webkit-text-stroke: 2px #2c2a2a;
+    margin-top: 200px;
 }
 
 .btn {
+    line-height: 60px;
     padding: 10px 20px;
     border-radius: 10px;
     background: rgba(255, 255, 255, .7);
@@ -85,6 +99,7 @@ body {
 }
 
 .blogs-section {
+    word-break: break-word;
     width: 100%;
     padding: 50px;
     display: grid;

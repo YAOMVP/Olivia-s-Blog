@@ -51,16 +51,21 @@ let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc
 
 publishBtn.addEventListener("click", () => {
     if (articleField.value.length && blogTitleField.value.length) {
-        //generating id
-        let letters = "jfljdskhjdgfdsgffdsloremdjfsaljf";
-        let blogTitle = blogTitleField.value.split(" ").join("-"); //replace the spaces with "-" in the title
-        let id = "";
-        for (let i = 0; i < 4; i++) {
-            id += letters[Math.floor(Math.random() * letters.length)]
+        let docName;
+        if (blogID[0] == "editor") {
+            //generating id
+            let letters = "jfljdskhjdgfdsgffdsloremdjfsaljf";
+            let blogTitle = blogTitleField.value.split(" ").join("-"); //replace the spaces with "-" in the title
+            let id = "";
+            for (let i = 0; i < 4; i++) {
+                id += letters[Math.floor(Math.random() * letters.length)]
+            }
+            //Seting up docName
+            docName = `${blogTitle} - ${id}`;
+        } else {
+            docName = decodeURI(blogID[0]);
         }
 
-        //Seting up docName
-        let docName = `${blogTitle} - ${id}`;
         let date = new Date(); //Publishing the date
 
         //Access firestore with db variable
@@ -68,7 +73,8 @@ publishBtn.addEventListener("click", () => {
                 title: blogTitleField.value,
                 article: articleField.value,
                 bannerImage: bannerPath,
-                publishedAt: `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()} `
+                publishedAt: `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()} `,
+                author: auth.currentUser.email.split("@")[0] // this will return ["example","gmail.com"]
             })
             .then(() => {
                 location.href = `/${docName}`;
@@ -78,3 +84,31 @@ publishBtn.addEventListener("click", () => {
             })
     }
 });
+
+//checking for user logged in or not
+
+auth.onAuthStateChanged((user) => {
+    if (!user) {
+        location.replace("/admin") //re-direct to admin route if no one is logged in
+    }
+})
+
+//checking for existing blog edits
+let blogID = location.pathname.split("/");
+blogID.shift(); //It will remove the first element,which is empty from the array
+
+if (blogID[0] != "editor") {
+    //We are in existing blog edit route
+    let docRef = db.collection("blogs").doc(decodeURI(blogID[0]));
+    docRef.get().then((doc) => {
+        if (doc.exists) {
+            let data = doc.data();
+            bannerPath = data.bannerImage;
+            banner.style.backgroundImage = `url(${bannerPath})`;
+            blogTitleField.value = data.title;
+            articleField.value = data.article;
+        } else {
+            location.replace("/");
+        }
+    })
+}

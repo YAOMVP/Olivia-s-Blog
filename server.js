@@ -1,6 +1,8 @@
 const express = require("express"); //Import all packages
 const path = require("path");
 const fileupload = require("express-fileupload");
+require('dotenv').config();
+
 
 let initial_path = path.join(__dirname, "public"); //Store "public" folder's path to this variable
 
@@ -13,7 +15,7 @@ app.get("/", (req, res) => {
 });
 
 
-app.get("/edit", (req, res) => {
+app.get("/editor", (req, res) => {
     res.sendFile(path.join(initial_path, "editor.html"));
 });
 
@@ -45,12 +47,17 @@ app.get("/:blog", (req, res) => {
     res.sendFile(path.join(initial_path, "blog.html"));
 });
 
+app.get("/:blog/editor", (req, res) => {
+    res.sendFile(path.join(initial_path, "editor.html"));
+});
+
+
 
 app.use((req, res) => {
     res.json("404");
 });
 
 
-app.listen("3000", () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log("Listening on port 3000");
 })
