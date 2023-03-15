@@ -17,34 +17,34 @@ uploadInput.addEventListener("change", () => {
     uploadImage(uploadInput, "image");
 });
 
-const uploadImage = (uploadFile, uploadType) => {
-    const [file] = uploadFile.files;
-    if (file && file.type.includes("image")) { //make sure the file is image only
-        const formdata = new FormData();
-        formdata.append("image", file);
+// const uploadImage = (uploadFile, uploadType) => {
+//     const [file] = uploadFile.files;
+//     if (file && file.type.includes("image")) { //make sure the file is image only
+//         const formdata = new FormData();
+//         formdata.append("image", file);
 
-        fetch("/upload", {
-                method: "post",
-                body: formdata
-            }).then(res => res.json())
-            .then(data => {
-                if (uploadType == "image") {
-                    addImage(data, file.name);
-                } else {
-                    bannerPath = `${location.origin}/${data}`; //Once got image url set banner's background image
-                    banner.style.backgroundImage = `url("${bannerPath}")`;
-                }
-            })
-    } else {
-        alert("Upload Image Only");
-    }
-}
+//         fetch("/upload", {
+//                 method: "post",
+//                 body: formdata
+//             }).then(res => res.json())
+//             .then(data => {
+//                 if (uploadType == "image") {
+//                     addImage(data, file.name);
+//                 } else {
+//                     bannerPath = `${location.origin}/${data}`; //Once got image url set banner's background image
+//                     banner.style.backgroundImage = `url("${bannerPath}")`;
+//                 }
+//             })
+//     } else {
+//         alert("Upload Image Only");
+//     }
+// }
 
-const addImage = (imagepath, alt) => {
-    let curPos = articleField.selectionStart;
-    let textToInsert = `\r![${alt}](${imagepath})\r`;
-    articleField.value = articleField.value.slice(0, curPos) + textToInsert + articleField.value.slice(curPos);
-}
+// const addImage = (imagepath, alt) => {
+//     let curPos = articleField.selectionStart;
+//     let textToInsert = `\r![${alt}](${imagepath})\r`;
+//     articleField.value = articleField.value.slice(0, curPos) + textToInsert + articleField.value.slice(curPos);
+// }
 
 let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -72,7 +72,7 @@ publishBtn.addEventListener("click", () => {
         db.collection("blogs").doc(docName).set({
                 title: blogTitleField.value,
                 article: articleField.value,
-                bannerImage: bannerPath,
+                // bannerImage: bannerPath,
                 publishedAt: `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()} `,
                 author: auth.currentUser.email.split("@")[0] // this will return ["example","gmail.com"]
             })

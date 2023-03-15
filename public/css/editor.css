@@ -5,6 +5,7 @@
     background: #e7e7e7;
     background-size: cover;
     background-position: center;
+    background-image: url(../img/editCut.jpg)!important;
 }
 
 .banner-upload-btn {
